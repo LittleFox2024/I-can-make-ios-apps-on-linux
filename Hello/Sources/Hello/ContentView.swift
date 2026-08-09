@@ -3,7 +3,7 @@ import SQLiteData
 
 struct ContentView: View {
 
-    @State private var isShowingAlert = false
+    @State private var isShowingAlert: Bool = false
 
     var body: some View {
         TabView{
@@ -11,10 +11,10 @@ struct ContentView: View {
                 HomeView()
             }
             Tab(Constants.editString,systemImage: "square.and.pencil"){
-                EditView()
+                DetailsView()
             }
             Tab(Constants.settingsString,systemImage: "dog.fill"){
-                Text(Constants.settingsString)
+                EditView()
             }
         }
     }

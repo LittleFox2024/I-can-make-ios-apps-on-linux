@@ -1,28 +1,26 @@
+import Foundation
 import SwiftUI
-import UserNotifications
 import SQLiteData
 
-struct HomeView: View{
-    //@FetchAll private var dogs: [Dog]
-    @FetchAll(Dog.order(by: \.name)) private var dogs
+struct DetailsView: View {
     @Dependency(\.defaultDatabase) var database
-    //@State var dogs = sampleDogs
+    @FetchAll(Time.order(by: \.time)) private var times
 
     var body: some View {
         NavigationStack{
             Group {
-                if dogs.isEmpty {
-                    Text("No Dogs")
+                if times.isEmpty {
+                    Text("No Times")
                 } else {
-                    List(dogs) { dog in
+                    List(times) { time in
                         VStack(alignment: .leading){
-                            Text(dog.name)
+                            Text(time.time)
                         }
                         .swipeActions(edge: .trailing){
                             Button("Delete", role: .destructive) {
                                 withErrorReporting {
                                     try database.write { db in
-                                        try Dog.delete(dog)
+                                        try Time.delete(time)
                                         .execute(db)
                                     }
                                 }
@@ -32,14 +30,8 @@ struct HomeView: View{
                     
                 }
             }
-            .navigationTitle("Dogs")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: CreateTimeView()) {
-                        Text("Add Time")
-                    }
-                }
-            }
+            .navigationTitle("Times")
         }
     }
+
 }
