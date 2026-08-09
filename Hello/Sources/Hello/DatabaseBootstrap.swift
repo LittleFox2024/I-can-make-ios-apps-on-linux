@@ -15,11 +15,6 @@ extension DependencyValues {
                 CREATE TABLE dogs (
                     id TEXT PRIMARY KEY NOT NULL ON CONFLICT REPLACE DEFAULT (uuid()),
                     name TEXT NOT NULL DEFAULT "Puppy"
-                ),
-                CREATE TABLE times (
-                    id TEXT PRIMARY KEY NOT NULL ON CONFLICT REPLACE DEFAULT (uuid()),
-                    time TEXT NOT NULL DEFAULT "00:00",
-                    dogId TEXT NOT NULL REFERENCES dogs(id) ON DELETE CASCADE
                 )
             """)
             .execute(db)

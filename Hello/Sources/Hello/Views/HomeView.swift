@@ -33,13 +33,6 @@ struct HomeView: View{
                 }
             }
             .navigationTitle("Dogs")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: CreateTimeView()) {
-                        Text("Add Time")
-                    }
-                }
-            }
         }
     }
 }
